@@ -1,5 +1,8 @@
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import MainNavigation from "@/components/main-navigation";
+import Hamburger from "@/components/hamburger";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,19 +22,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
+      <body id="main-header"
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{
-          backgroundImage: "url('/background/background_01.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          height: "100vh",
-          width: "100vw"
-        }}
       >
-        {children}
+        <header id="main-header" className="flex flex-row justify-between">
+          <Link href='/'>
+            <h1 className="text-3xl m-4">Barber Shop</h1>
+          </Link>
+          <MainNavigation />
+          <Hamburger />
+        </header>
+        <main id="main">
+          {children}
+        </main>
+        <footer id="main-footer" className="bg-zinc-950 text-center">
+          <div>
+            <Link href='https://mihais-git.github.io/'>
+              Mihai Suciu &copy; 2025
+            </Link>
+          </div>
+        </footer>
       </body>
     </html>
   );
