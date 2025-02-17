@@ -31,4 +31,5 @@ const TreatmentSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.model.Treatment || mongoose.model("Treatment", TreatmentSchema);
+const Treatment = mongoose.model.Treatment || mongoose.model("Treatment", TreatmentSchema);
+export default Treatment;

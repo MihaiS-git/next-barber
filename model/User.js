@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { unique } from "next/dist/build/utils";
 
 const UserSchema = new mongoose.Schema(
     {
@@ -27,7 +26,7 @@ const UserSchema = new mongoose.Schema(
         },
         dob: {
             type: Date,
-            required: true
+            required: false
         },
         pictureUrl: {
             type: String,
@@ -44,8 +43,11 @@ const UserSchema = new mongoose.Schema(
             required: false
         }],
         notAvailable: [{
-            start: Date,
-            end: Date
+            type: {
+                start: Date,
+                end: Date,
+            },
+            required: false
         }],
         resetToken: {
             type: String,
@@ -56,7 +58,8 @@ const UserSchema = new mongoose.Schema(
             required: false
         }
     },
-    {timestamps: true}
+    { timestamps: true }
 );
 
-export default mongoose.model.User || mongoose.model("User", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+export default User;

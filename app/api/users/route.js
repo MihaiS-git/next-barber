@@ -6,9 +6,15 @@ export async function POST(req) {
     try {
         const { email, password } = await req.json();
         await connectToDatabase();
+        const existingUser = await getUserByEmail(email);
+        if (existingUser) {
+            return NextResponse.json({ error: "Email already in use." }, { status: 400 });
+        }
         const newUser = await User.create({ email, password });
         return NextResponse.json(newUser, { status: 201 });
     } catch (error) {
+        console.log(error);
+        
         return NextResponse.json({ error: "Failed to register new user." }, { status: 500 });
     }
 }
