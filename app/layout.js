@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           <MainNavigation />
           <Hamburger />
         </header>
-        <main id="main">
+        <main id="main" className="overflow-scroll">
           {children}
         </main>
         <footer id="main-footer" className="bg-zinc-950 text-center">

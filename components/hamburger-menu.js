@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function HamburgerMenu() {
     return (
 
-        <ul>
+        <ul className="mb-4">
             <li className="px-4 py-2 w-60">
                 <Link href='/'>Treatments</Link>
             </li>

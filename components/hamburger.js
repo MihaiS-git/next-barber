@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import HamburgerMenu from "./hamburger-menu";
+import { Button } from "@/components/ui/button";
 
 export default function Hamburger() {
     const [isOpen, setIsOpen] = useState(false);
@@ -17,28 +18,32 @@ export default function Hamburger() {
         <div>
             {!isOpen && (
                 <div
-                    className="lg:hidden m-4 py-2 w-8 h-8 space-y-1 sm:py-3 sm:w-12 sm:h-12 sm-pace-y-2 bg-zinc-950 rounded shadow flex flex-col justify-between"
+                    className="lg:hidden m-4 py-2 w-8 h-8 space-y-1 md:py-3 md:w-12 md:h-12 md-pace-y-2 bg-zinc-950 rounded shadow flex flex-col justify-between"
                     onClick={toggleOpenState}
                 >
-                    <span className="block mx-auto w-6 sm:w-7 h-0.5 sm:h-0.5 bg-zinc-50 animate-pulse"></span>
-                    <span className="block mx-auto w-6 sm:w-7 h-0.5 sm:h-0.5 bg-zinc-50 animate-pulse"></span>
-                    <span className="block mx-auto w-6 sm:w-7 h-0.5 sm:h-0.5 bg-zinc-50 animate-pulse"></span>
+                    <span className="block mx-auto w-6 md:w-7 h-0.5 md:h-0.5 bg-zinc-50 animate-pulse"></span>
+                    <span className="block mx-auto w-6 md:w-7 h-0.5 md:h-0.5 bg-zinc-50 animate-pulse"></span>
+                    <span className="block mx-auto w-6 md:w-7 h-0.5 md:h-0.5 bg-zinc-50 animate-pulse"></span>
                 </div>
             )}
-            {isOpen && (
-                <div className="fixed -inset-x-1 bg-zinc-950 text-zinc-50 flex flex-col items-center justify-center z-50 p-4">
-                    <Link href='/'>
-                        <h1 className="text-3xl mb-8">Barber Shop</h1>
-                    </Link>
+            {/* <div className="relative"> */}
+            <div
+                className={`fixed inset-x-0 top-0 overflow-y-auto bg-zinc-800 text-zinc-50 flex flex-col items-center justify-start z-50 p-4 transform transition-all duration-500 ease-in-out 
+                    ${isOpen ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-10 scale-95 pointer-events-none"} 
+                `}
+            >
+                
                     {memoizedMenu}
-                    <button
-                        className="bg-zinc-800 hover:bg-zinc-400 text-zinc-100 hover:text-zinc-900 w-6 h-6 align-bottom self-end font-bold mt-4"
+                
+                <div className="fixed bottom-4 right-4">
+                    <Button
+                        variant="secondary"
+                        className="w-4 h-4 p-4 font-bold"
                         onClick={toggleOpenState}
-                    >
-                        X
-                    </button>
+                    >X</Button>
                 </div>
-            )}
+            </div>
+            {/* </div> */}
         </div>
     );
 }
